@@ -25,23 +25,9 @@ node* curr = head->next; //순회용 노드
 	printf("List is : ");
 	while (curr != NULL) {
 
-		printf("%d ", curr->data);
+		printf("%d ", curr->data); //여기서 예외 발생 오류가 뜨는데 왜? 포인터 주소 말고 값 넘겨줬다고 하는데 모르겠드..
 		curr = curr->next;
 	}printf("\n");
-}
-
-void ReversePrint (node *head){
-	node *cur1=NULL;
-	node *cur2=head;
-	node *cur3 = head -> next;
-
-	while (cur3->next != NULL){
-		cur1 = cur3 -> next;
-	}
-	printf("Reverse list is : ");
-	printf("%d ", cur3 -> data);
-	printf("%d ", cur1-> data);
-
 }
 
 
