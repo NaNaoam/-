@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct NODE {
+
+	int data;
+	struct NODE* next; //다름 노드의 주소를 저장할 자기참조 구조체포인터
+
+
+}node;
+
+int Insert() {
+	int data;
+	printf("데이터를 입력하세요 : \n");
+	scanf_s("%d", &data);
+
+	return data;
+
+}
+void Print_list(node* head) {
+
+	node* curr = head->next; //순회용 노드
+
+	printf("List is : ");
+	while (curr != NULL) {
+
+		printf("%d ", curr->data); //여기서 예외 발생 오류가 뜨는데 왜? 포인터 주소 말고 값 넘겨줬다고 하는데 모르겠드..
+		curr = curr->next;
+	}printf("\n");
+}
+
+node* Reverse(node* head) {
+	node* cur1 = head;
+	node* cur2 = head->next;
+	node* cur3 = head;
+	
+	while (cur3 != NULL) {
+		cur3 = cur3->next;
+
+	}
+	head = cur3;
+	cur3->next = cur2->next;
+	cur2->next = cur1->next;
+	cur1->next = NULL;
+
+	return head;
+}
+
+
+
+int main(void) {
+
+	node* head = (node*)malloc(sizeof(node));//헤드(시작) 노드 생성
+
+	if (head == NULL)
+		return -1;
+	//오류 방지
+
+	head->next = NULL;//머리노드의 next 값은 null
+
+	node* node1 = (node*)malloc(sizeof(node));
+	if (node1 == NULL)
+		return -1;
+	node1->next = NULL;
+	node1->data = Insert();
+	head->next = node1;
+
+	node* node2 = (node*)malloc(sizeof(node));
+	if (node2 == NULL)
+		return -1;
+	node2->next = NULL;
+	node2->data = Insert();
+	node1->next = node2;
+
+	node* node3 = (node*)malloc(sizeof(node));
+
+	if (node3 == NULL)
+		return -1;
+	node3->next = NULL;
+	node3->data = Insert();
+	node2->next = node3;
+
+	Print_list(head);
+	Reverse(head);
+	Print_list(head);
+
+
+	free(head);
+	free(node1);
+	free(node2);
+
+	return 0;
+}
