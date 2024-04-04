@@ -18,7 +18,7 @@ int Insert(){
     return data;
 
 }
-void Print_list (struct NODE *head){
+void Print_list (node *head){
 
 node* curr = head->next; //순회용 노드
 
